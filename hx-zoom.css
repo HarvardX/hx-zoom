@@ -1,12 +1,15 @@
-.zoombox {
+.zoom_container {
   border: 1px solid black;
   width: 700px;
 }
 
-.zoom_img {
+.zoom_box {
   display: none;
 }
 
-.zoomslider {
+.zoom_img {
+}
+
+.zoom_slider {
   background-color: gray;
 }

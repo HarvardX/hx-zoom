@@ -8,26 +8,38 @@
     <form>
       <input
         type="range"
-        id="zoomrange"
+        id="zoom_slider"
         name="zoom"
-        class="zoomslider"
+        class="zoom_slider"
         min="0"
         max="100"
         step="1"
         value="10"
       />
     </form>
-    <div class="zoombox">
-      <div class="zoom_img" data-first-vis="0" data-last-vis="30">
-        <img src="https://placebear.com/200/300" alt="" />
+    <div class="zoom_container">
+      <div
+        class="zoom_box"
+        data-src="https://placebear.com/200/300"
+        data-first-vis="0"
+        data-last-vis="30"
+      >
         Small Bear
       </div>
-      <div class="zoom_img" data-first-vis="20" data-last-vis="60">
-        <img src="https://placebear.com/300/300" alt="" />
+      <div
+        class="zoom_box"
+        data-src="https://placebear.com/300/300"
+        data-first-vis="20"
+        data-last-vis="60"
+      >
         Medium Bear
       </div>
-      <div class="zoom_img" data-first-vis="70" data-last-vis="100">
-        <img src="https://placebear.com/300/400" alt="" />
+      <div
+        class="zoom_box"
+        data-src="https://placebear.com/300/400"
+        data-first-vis="70"
+        data-last-vis="100"
+      >
         Large Bear
       </div>
     </div>
