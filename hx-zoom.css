@@ -1,0 +1,12 @@
+.zoombox {
+  border: 1px solid black;
+  width: 700px;
+}
+
+.zoom_img {
+  display: none;
+}
+
+.zoomslider {
+  background-color: gray;
+}

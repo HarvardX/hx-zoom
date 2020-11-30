@@ -2,16 +2,35 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <script src="hx-zoom.js" />
     <link rel="stylesheet" href="hx-zoom.css" />
   </head>
-
   <body>
-    Test
+    <form>
+      <input
+        type="range"
+        id="zoomrange"
+        name="zoom"
+        class="zoomslider"
+        min="0"
+        max="100"
+        step="1"
+        value="10"
+      />
+    </form>
     <div class="zoombox">
-      <img src="https://placebear.com/200/300" alt="" />
-      <img src="https://placebear.com/300/300" alt="" />
-      <img src="https://placebear.com/300/400" alt="" />
+      <div class="zoom_img" data-first-vis="0" data-last-vis="30">
+        <img src="https://placebear.com/200/300" alt="" />
+        Small Bear
+      </div>
+      <div class="zoom_img" data-first-vis="20" data-last-vis="60">
+        <img src="https://placebear.com/300/300" alt="" />
+        Medium Bear
+      </div>
+      <div class="zoom_img" data-first-vis="70" data-last-vis="100">
+        <img src="https://placebear.com/300/400" alt="" />
+        Large Bear
+      </div>
     </div>
   </body>
+  <script src="hx-zoom.js"></script>
 </html>
