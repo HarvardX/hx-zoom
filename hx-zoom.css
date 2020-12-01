@@ -1,13 +1,16 @@
 .zoom_container {
   border: 1px solid black;
   width: 700px;
+  position: relative;
 }
 
 .zoom_box {
   display: none;
+  position: absolute;
 }
 
 .zoom_img {
+  position: absolute;
 }
 
 .zoom_slider {
