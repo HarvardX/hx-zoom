@@ -5,13 +5,11 @@
   position: relative;
 }
 
-.zoom_box {
-  display: none;
-  position: absolute;
-}
-
 .zoom_img {
   transform-origin: 0% 0%;
+  position: absolute;
+  max-width: 300px;
+  max-height: 300px;
 }
 
 .zoom_slider {
