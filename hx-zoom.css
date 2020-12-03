@@ -1,18 +1,25 @@
 .zoom_container {
   border: 1px solid black;
   width: 700px;
+  height: 500px;
   position: relative;
 }
 
 .zoom_box {
+  border: 1px dotted black;
   display: none;
   position: absolute;
 }
 
 .zoom_img {
-  position: absolute;
+  border: 1px dashed black;
+  transform-origin: 0% 0%;
 }
 
 .zoom_slider {
   background-color: gray;
+}
+
+.img_title {
+  position: relative;
 }
