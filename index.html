@@ -3,6 +3,58 @@
   <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="hx-zoom.css" />
+    <script>
+      let zoom_objects = [
+        {
+          src: 'https://placebear.com/200/300',
+          first_vis: 0,
+          last_vis: 10,
+          clock: 12,
+        },
+        {
+          src: 'https://placebear.com/300/100',
+          first_vis: 10,
+          last_vis: 30,
+          clock: 2,
+        },
+        {
+          src: 'https://placebear.com/100/400',
+          first_vis: 20,
+          last_vis: 60,
+          clock: 8,
+        },
+        {
+          src: 'https://placebear.com/500/500',
+          first_vis: 30,
+          last_vis: 40,
+          clock: 11,
+        },
+        {
+          src: 'https://placebear.com/200/200',
+          first_vis: 50,
+          last_vis: 70,
+          clock: 4,
+        },
+        {
+          src: 'https://placebear.com/200/300',
+          first_vis: 60,
+          last_vis: 80,
+          clock: 9,
+        },
+        {
+          src: 'https://placebear.com/400/300',
+          first_vis: 70,
+          last_vis: 90,
+          clock: 7,
+        },
+        {
+          src: 'https://placebear.com/300/400',
+          first_vis: 75,
+          last_vis: 100,
+          clock: 3,
+        },
+      ];
+    </script>
   </head>
   <body>
     <form>
@@ -18,64 +70,7 @@
       />
     </form>
 
-    <div class="zoom_container">
-      <div
-        class="zoom_box"
-        data-src="https://placebear.com/200/300"
-        data-first-vis="0"
-        data-last-vis="10"
-        data-clock="12"
-      ></div>
-      <div
-        class="zoom_box"
-        data-src="https://placebear.com/300/100"
-        data-first-vis="10"
-        data-last-vis="30"
-        data-clock="2"
-      ></div>
-      <div
-        class="zoom_box"
-        data-src="https://placebear.com/100/400"
-        data-first-vis="20"
-        data-last-vis="60"
-        data-clock="8"
-      ></div>
-      <div
-        class="zoom_box"
-        data-src="https://placebear.com/500/500"
-        data-first-vis="30"
-        data-last-vis="40"
-        data-clock="11"
-      ></div>
-      <div
-        class="zoom_box"
-        data-src="https://placebear.com/200/200"
-        data-first-vis="50"
-        data-last-vis="70"
-        data-clock="4"
-      ></div>
-      <div
-        class="zoom_box"
-        data-src="https://placebear.com/200/300"
-        data-first-vis="60"
-        data-last-vis="80"
-        data-clock="9"
-      ></div>
-      <div
-        class="zoom_box"
-        data-src="https://placebear.com/400/300"
-        data-first-vis="70"
-        data-last-vis="90"
-        data-clock="7"
-      ></div>
-      <div
-        class="zoom_box"
-        data-src="https://placebear.com/300/400"
-        data-first-vis="75"
-        data-last-vis="100"
-        data-clock="3"
-      ></div>
-    </div>
+    <div class="zoom_container"></div>
   </body>
   <script src="hx-zoom.js"></script>
 </html>

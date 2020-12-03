@@ -4,15 +4,14 @@ let opacity_edge = 1 / 10; // Set smaller for thinner edge.
 // Get an array of the divs that will hold images.
 let image_array = [];
 let zoom_container = document.querySelector('.zoom_container');
-let zoom_boxes = document.querySelectorAll('.zoom_box');
 
 // Put blank images inside the divs.
-Object.keys(zoom_boxes).forEach(function (i) {
+Object.keys(zoom_objects).forEach(function (i) {
   let img_tag = document.createElement('img');
   img_tag.attributes.src = '';
   img_tag.attributes.alt = '';
   img_tag.className = 'zoom_img';
-  zoom_boxes[i].appendChild(img_tag);
+  zoom_container.appendChild(img_tag);
 });
 
 // For use in positioning functions
@@ -23,36 +22,35 @@ let slider = document.getElementById('zoom_slider');
 
 // Update the current slider value (each time you drag the slider handle)
 slider.oninput = function () {
-  let d;
   zoom = Number(this.value);
   Object.keys(zoom_images).forEach(function (i) {
-    d = zoom_boxes[i].dataset;
-    setVisibility(i, d, zoom);
-    setScales(i, d, zoom);
-    setPosition(i, d, zoom);
+    setVisibility(i, zoom);
+    setScales(i, zoom);
+    setPosition(i, zoom);
   });
 };
 
+function isVisible(i, zoom) {
+  return zoom_objects[i].first_vis <= zoom && zoom <= zoom_objects[i].last_vis;
+}
+
 // Handle visibility when slider moves.
-function setVisibility(i, d, zoom) {
-  let box = zoom_boxes[i];
-  let is_visible = Number(d.firstVis) <= zoom && zoom <= Number(d.lastVis);
-  if (is_visible) {
-    zoom_boxes[i].style.display = 'block';
-    zoom_images[i].src = d.src;
+function setVisibility(i, zoom) {
+  if (isVisible(i, zoom)) {
+    zoom_images[i].style.display = 'block';
+    zoom_images[i].src = zoom_objects[i].src;
   } else {
-    zoom_boxes[i].style.display = '';
+    zoom_images[i].style.display = '';
   }
 }
 
 // Make the image the right size.
-function setScales(i, d, zoom) {
+function setScales(i, zoom) {
   let img = zoom_images[i];
-  let is_visible = Number(d.firstVis) <= zoom && zoom <= Number(d.lastVis);
 
-  if (is_visible) {
-    zoom_images[i].style.opacity = getOpacity(d, zoom);
-    let current_scale = getScale(zoom, d.firstVis, d.lastVis);
+  if (isVisible(i, zoom)) {
+    zoom_images[i].style.opacity = getOpacity(i, zoom);
+    let current_scale = getScale(i, zoom);
     zoom_images[i].style.transform = 'scale(' + current_scale + ')';
   } else {
     zoom_images[i].style.opacity = 0;
@@ -60,23 +58,23 @@ function setScales(i, d, zoom) {
 }
 
 // Put the image in the right place.
-function setPosition(i, d, zoom) {
-  let current_scale = getScale(zoom, d.firstVis, d.lastVis);
-  let { left, top } = getVector(i, d.clock, current_scale);
-  zoom_boxes[i].style.left = left + 'px';
-  zoom_boxes[i].style.top = top + 'px';
+function setPosition(i, zoom) {
+  let current_scale = getScale(i, zoom);
+  let { left, top } = getVector(i, current_scale);
+  zoom_images[i].style.left = left + 'px';
+  zoom_images[i].style.top = top + 'px';
 }
 
-function getScale(zoom, first, last) {
+function getScale(i, zoom) {
   return (
-    ((max_scale / 100) * (zoom - Number(first))) /
-    (Number(last) - Number(first))
+    ((max_scale / 100) * (zoom - zoom_objects[i].first_vis)) /
+    (zoom_objects[i].last_vis - zoom_objects[i].first_vis)
   );
 }
 
-function getOpacity(d, zoom) {
-  let first = Number(d.firstVis);
-  let last = Number(d.lastVis);
+function getOpacity(i, zoom) {
+  let first = zoom_objects[i].first_vis;
+  let last = zoom_objects[i].last_vis;
   let edge = (last - first) * opacity_edge;
   if (zoom < first) {
     return 0;
@@ -91,7 +89,7 @@ function getOpacity(d, zoom) {
   }
 }
 
-function getVector(i, clock, current_scale) {
+function getVector(i, current_scale) {
   let container_width = document.querySelector('.zoom_container').clientWidth;
   let container_height = document.querySelector('.zoom_container').clientHeight;
 
@@ -105,7 +103,7 @@ function getVector(i, clock, current_scale) {
   //   container_width * container_width + container_height * container_height
   // );
 
-  let theta = ((Number(clock) % 12) * Math.PI) / 6;
+  let theta = ((zoom_objects[i].clock % 12) * Math.PI) / 6;
 
   // set left-hand location and top location based on image and container size.
   // At scale 0 we're in the center of the box.
